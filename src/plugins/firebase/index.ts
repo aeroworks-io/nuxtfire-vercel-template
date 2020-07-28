@@ -32,7 +32,9 @@ declare module 'vue/types/vue' {
   }
 }
 
-if (!firebase.apps.length) {
+const firebaseReady = !!process.env.FIREBASE_PROJECT_ID && !!process.env.FIREBASE_API_KEY
+
+if (firebaseReady && !firebase.apps.length) {
   firebase.initializeApp({
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -45,11 +47,13 @@ if (!firebase.apps.length) {
 }
 
 const FirebasePlugin: Plugin = (ctx, inject) => {
-  inject('firestore', firebase.firestore())
-  inject('auth', firebase.auth())
+  if (firebaseReady) {
+    inject('firestore', firebase.firestore())
+    inject('auth', firebase.auth())
 
-  ctx.$firestore = firebase.firestore()
-  ctx.$auth = firebase.auth()
+    ctx.$firestore = firebase.firestore()
+    ctx.$auth = firebase.auth()
+  }
 }
 
 export default FirebasePlugin
