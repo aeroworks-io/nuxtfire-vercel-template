@@ -33,6 +33,14 @@
   "files": [
     "shims-vue.d.ts"
   ],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "test/**/*.ts",
+    "test/**/*.vue",
+    "stories/**/*.ts",
+    "stories/**/*.vue"
+  ],
   "exclude": [
     "node_modules"
   ]
