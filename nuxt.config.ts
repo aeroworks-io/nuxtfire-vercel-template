@@ -1,3 +1,5 @@
+import { Configuration } from '@nuxt/types'
+
 import colors from 'vuetify/es5/util/colors'
 
 export default {
@@ -84,15 +86,22 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config: any, ctx: any) {
+    extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
+        config.module?.rules.push({
           enforce: 'pre',
           test: /\.(js|ts|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
+      }
+      if (ctx.isServer) {
+        config.externals = {
+          '@firebase/app': 'commonjs @firebase/app',
+          '@firebase/auth': 'commonjs @firebase/auth',
+          '@firebase/firestore': 'commonjs @firebase/firestore',
+        }
       }
     }
   },
@@ -100,4 +109,4 @@ export default {
     typeCheck: true,
     ignoreNotFoundWarnings: true
   }
-}
+} as Configuration
