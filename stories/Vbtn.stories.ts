@@ -1,5 +1,5 @@
-import { storiesOf } from '@storybook/vue';
-import { VBtn } from 'vuetify/lib';
+import { storiesOf } from '@storybook/vue'
+import { VBtn } from 'vuetify/lib'
 
 storiesOf('Vuetify Components', module).add('VBtn', () => ({
   components: { VBtn },
@@ -19,4 +19,4 @@ storiesOf('Vuetify Components', module).add('VBtn', () => ({
   </div>
 </div>
 `,
-}));
+}))

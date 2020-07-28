@@ -75,7 +75,7 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js',
-    };
+    }
   },
-};
+}
 </script>
